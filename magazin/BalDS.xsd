@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BalDS" targetNamespace="http://tempuri.org/BalDS.xsd" xmlns:mstns="http://tempuri.org/BalDS.xsd" xmlns="http://tempuri.org/BalDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="magazinConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="magazinConnectionString (Settings)" PropertyReference="ApplicationSettings.magazin.Properties.Settings.GlobalReference.Default.magazinConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BalantaStocTableAdapter" GeneratorDataComponentClassName="BalantaStocTableAdapter" Name="BalantaStoc" UserDataComponentName="BalantaStocTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="magazinConnectionString (Settings)" DbObjectName="BalantaStoc" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT BalantaStoc.IdProdus, BalantaStoc.StocInitial, BalantaStoc.Intrari, BalantaStoc.Iesiri, BalantaStoc.StocFinal
+FROM     (BalantaStoc LEFT OUTER JOIN
+                  Produse ON BalantaStoc.IdProdus = Produse.IdProdus)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdProdus" DataSetColumn="IdProdus" />
+              <Mapping SourceColumn="StocInitial" DataSetColumn="StocInitial" />
+              <Mapping SourceColumn="Intrari" DataSetColumn="Intrari" />
+              <Mapping SourceColumn="Iesiri" DataSetColumn="Iesiri" />
+              <Mapping SourceColumn="StocFinal" DataSetColumn="StocFinal" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CalculStocTableAdapter" GeneratorDataComponentClassName="CalculStocTableAdapter" Name="CalculStoc" UserDataComponentName="CalculStocTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="magazinConnectionString (Settings)" DbObjectName="CalculStoc" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT IdOperatie, Data, IdProdus, Cantitate
+FROM     CalculStoc
+ORDER BY IdProdus, IdOperatie, Data</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdOperatie" DataSetColumn="IdOperatie" />
+              <Mapping SourceColumn="Data" DataSetColumn="Data" />
+              <Mapping SourceColumn="IdProdus" DataSetColumn="IdProdus" />
+              <Mapping SourceColumn="Cantitate" DataSetColumn="Cantitate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="IntrariTableAdapter" GeneratorDataComponentClassName="IntrariTableAdapter" Name="Intrari" UserDataComponentName="IntrariTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="magazinConnectionString (Settings)" DbObjectName="CalculStoc" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT IdProdus, SUM(Cantitate) AS Total
+FROM     CalculStoc
+WHERE  (IdOperatie = 2)
+GROUP BY IdProdus</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdProdus" DataSetColumn="IdProdus" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="IesiriTableAdapter" GeneratorDataComponentClassName="IesiriTableAdapter" Name="Iesiri" UserDataComponentName="IesiriTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="magazinConnectionString (Settings)" DbObjectName="CalculStoc" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT IdProdus, SUM(Cantitate) AS Total
+FROM     CalculStoc
+WHERE  (IdOperatie = 3)
+GROUP BY IdProdus</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdProdus" DataSetColumn="IdProdus" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BalDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BalDS" msprop:Generator_UserDSName="BalDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BalantaStoc" msprop:Generator_TableClassName="BalantaStocDataTable" msprop:Generator_TableVarName="tableBalantaStoc" msprop:Generator_TablePropName="BalantaStoc" msprop:Generator_RowDeletingName="BalantaStocRowDeleting" msprop:Generator_RowChangingName="BalantaStocRowChanging" msprop:Generator_RowEvHandlerName="BalantaStocRowChangeEventHandler" msprop:Generator_RowDeletedName="BalantaStocRowDeleted" msprop:Generator_UserTableName="BalantaStoc" msprop:Generator_RowChangedName="BalantaStocRowChanged" msprop:Generator_RowEvArgName="BalantaStocRowChangeEvent" msprop:Generator_RowClassName="BalantaStocRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdProdus" msprop:Generator_ColumnVarNameInTable="columnIdProdus" msprop:Generator_ColumnPropNameInRow="IdProdus" msprop:Generator_ColumnPropNameInTable="IdProdusColumn" msprop:Generator_UserColumnName="IdProdus" type="xs:int" />
+              <xs:element name="StocInitial" msprop:Generator_ColumnVarNameInTable="columnStocInitial" msprop:Generator_ColumnPropNameInRow="StocInitial" msprop:Generator_ColumnPropNameInTable="StocInitialColumn" msprop:Generator_UserColumnName="StocInitial" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Intrari" msprop:Generator_ColumnVarNameInTable="columnIntrari" msprop:Generator_ColumnPropNameInRow="Intrari" msprop:Generator_ColumnPropNameInTable="IntrariColumn" msprop:Generator_UserColumnName="Intrari" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Iesiri" msprop:Generator_ColumnVarNameInTable="columnIesiri" msprop:Generator_ColumnPropNameInRow="Iesiri" msprop:Generator_ColumnPropNameInTable="IesiriColumn" msprop:Generator_UserColumnName="Iesiri" type="xs:decimal" minOccurs="0" />
+              <xs:element name="StocFinal" msprop:Generator_ColumnVarNameInTable="columnStocFinal" msprop:Generator_ColumnPropNameInRow="StocFinal" msprop:Generator_ColumnPropNameInTable="StocFinalColumn" msprop:Generator_UserColumnName="StocFinal" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CalculStoc" msprop:Generator_TableClassName="CalculStocDataTable" msprop:Generator_TableVarName="tableCalculStoc" msprop:Generator_TablePropName="CalculStoc" msprop:Generator_RowDeletingName="CalculStocRowDeleting" msprop:Generator_RowChangingName="CalculStocRowChanging" msprop:Generator_RowEvHandlerName="CalculStocRowChangeEventHandler" msprop:Generator_RowDeletedName="CalculStocRowDeleted" msprop:Generator_UserTableName="CalculStoc" msprop:Generator_RowChangedName="CalculStocRowChanged" msprop:Generator_RowEvArgName="CalculStocRowChangeEvent" msprop:Generator_RowClassName="CalculStocRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdOperatie" msprop:Generator_ColumnVarNameInTable="columnIdOperatie" msprop:Generator_ColumnPropNameInRow="IdOperatie" msprop:Generator_ColumnPropNameInTable="IdOperatieColumn" msprop:Generator_UserColumnName="IdOperatie" type="xs:int" minOccurs="0" />
+              <xs:element name="Data" msprop:Generator_ColumnVarNameInTable="columnData" msprop:Generator_ColumnPropNameInRow="Data" msprop:Generator_ColumnPropNameInTable="DataColumn" msprop:Generator_UserColumnName="Data" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IdProdus" msprop:Generator_ColumnVarNameInTable="columnIdProdus" msprop:Generator_ColumnPropNameInRow="IdProdus" msprop:Generator_ColumnPropNameInTable="IdProdusColumn" msprop:Generator_UserColumnName="IdProdus" type="xs:int" minOccurs="0" />
+              <xs:element name="Cantitate" msprop:Generator_ColumnVarNameInTable="columnCantitate" msprop:Generator_ColumnPropNameInRow="Cantitate" msprop:Generator_ColumnPropNameInTable="CantitateColumn" msprop:Generator_UserColumnName="Cantitate" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Intrari" msprop:Generator_TableClassName="IntrariDataTable" msprop:Generator_TableVarName="tableIntrari" msprop:Generator_TablePropName="Intrari" msprop:Generator_RowDeletingName="IntrariRowDeleting" msprop:Generator_RowChangingName="IntrariRowChanging" msprop:Generator_RowEvHandlerName="IntrariRowChangeEventHandler" msprop:Generator_RowDeletedName="IntrariRowDeleted" msprop:Generator_UserTableName="Intrari" msprop:Generator_RowChangedName="IntrariRowChanged" msprop:Generator_RowEvArgName="IntrariRowChangeEvent" msprop:Generator_RowClassName="IntrariRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdProdus" msprop:Generator_ColumnVarNameInTable="columnIdProdus" msprop:Generator_ColumnPropNameInRow="IdProdus" msprop:Generator_ColumnPropNameInTable="IdProdusColumn" msprop:Generator_UserColumnName="IdProdus" type="xs:int" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Iesiri" msprop:Generator_TableClassName="IesiriDataTable" msprop:Generator_TableVarName="tableIesiri" msprop:Generator_TablePropName="Iesiri" msprop:Generator_RowDeletingName="IesiriRowDeleting" msprop:Generator_RowChangingName="IesiriRowChanging" msprop:Generator_RowEvHandlerName="IesiriRowChangeEventHandler" msprop:Generator_RowDeletedName="IesiriRowDeleted" msprop:Generator_UserTableName="Iesiri" msprop:Generator_RowChangedName="IesiriRowChanged" msprop:Generator_RowEvArgName="IesiriRowChangeEvent" msprop:Generator_RowClassName="IesiriRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdProdus" msprop:Generator_ColumnVarNameInTable="columnIdProdus" msprop:Generator_ColumnPropNameInRow="IdProdus" msprop:Generator_ColumnPropNameInTable="IdProdusColumn" msprop:Generator_UserColumnName="IdProdus" type="xs:int" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

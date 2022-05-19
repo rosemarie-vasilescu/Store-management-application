@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CalculStocDS" targetNamespace="http://tempuri.org/CalculStocDS.xsd" xmlns:mstns="http://tempuri.org/CalculStocDS.xsd" xmlns="http://tempuri.org/CalculStocDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="magazinConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="magazinConnectionString (Settings)" PropertyReference="ApplicationSettings.magazin.Properties.Settings.GlobalReference.Default.magazinConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CalculStocTableAdapter" GeneratorDataComponentClassName="CalculStocTableAdapter" Name="CalculStoc" UserDataComponentName="CalculStocTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="magazinConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT CalculStoc.IdOperatie, CalculStoc.Data, CalculStoc.IdProdus, CalculStoc.Cantitate, Produse.DProdus, Operatii.DOperatie
+FROM     ((CalculStoc INNER JOIN
+                  Produse ON CalculStoc.IdProdus = Produse.IdProdus) INNER JOIN
+                  Operatii ON CalculStoc.IdOperatie = Operatii.IdOperatie)
+ORDER BY CalculStoc.IdOperatie, CalculStoc.Data</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdOperatie" DataSetColumn="IdOperatie" />
+              <Mapping SourceColumn="Data" DataSetColumn="Data" />
+              <Mapping SourceColumn="IdProdus" DataSetColumn="IdProdus" />
+              <Mapping SourceColumn="Cantitate" DataSetColumn="Cantitate" />
+              <Mapping SourceColumn="DProdus" DataSetColumn="DProdus" />
+              <Mapping SourceColumn="DOperatie" DataSetColumn="DOperatie" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StocProduseTableAdapter" GeneratorDataComponentClassName="StocProduseTableAdapter" Name="StocProduse" UserDataComponentName="StocProduseTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="magazinConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT StocProduse.IdProdus, Produse.DProdus, Produse.UM, StocProduse.Cantitate
+FROM     (StocProduse LEFT OUTER JOIN
+                  Produse ON StocProduse.IdProdus = Produse.IdProdus)
+ORDER BY Produse.DProdus</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="IdProdus" DataSetColumn="IdProdus" />
+              <Mapping SourceColumn="DProdus" DataSetColumn="DProdus" />
+              <Mapping SourceColumn="UM" DataSetColumn="UM" />
+              <Mapping SourceColumn="Cantitate" DataSetColumn="Cantitate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CalculStocDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CalculStocDS" msprop:Generator_UserDSName="CalculStocDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CalculStoc" msprop:Generator_TableClassName="CalculStocDataTable" msprop:Generator_TableVarName="tableCalculStoc" msprop:Generator_TablePropName="CalculStoc" msprop:Generator_RowDeletingName="CalculStocRowDeleting" msprop:Generator_RowChangingName="CalculStocRowChanging" msprop:Generator_RowEvHandlerName="CalculStocRowChangeEventHandler" msprop:Generator_RowDeletedName="CalculStocRowDeleted" msprop:Generator_UserTableName="CalculStoc" msprop:Generator_RowChangedName="CalculStocRowChanged" msprop:Generator_RowEvArgName="CalculStocRowChangeEvent" msprop:Generator_RowClassName="CalculStocRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdOperatie" msprop:Generator_ColumnVarNameInTable="columnIdOperatie" msprop:Generator_ColumnPropNameInRow="IdOperatie" msprop:Generator_ColumnPropNameInTable="IdOperatieColumn" msprop:Generator_UserColumnName="IdOperatie" type="xs:int" minOccurs="0" />
+              <xs:element name="Data" msprop:Generator_ColumnVarNameInTable="columnData" msprop:Generator_ColumnPropNameInRow="Data" msprop:Generator_ColumnPropNameInTable="DataColumn" msprop:Generator_UserColumnName="Data" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IdProdus" msprop:Generator_ColumnVarNameInTable="columnIdProdus" msprop:Generator_ColumnPropNameInRow="IdProdus" msprop:Generator_ColumnPropNameInTable="IdProdusColumn" msprop:Generator_UserColumnName="IdProdus" type="xs:int" minOccurs="0" />
+              <xs:element name="Cantitate" msprop:Generator_ColumnVarNameInTable="columnCantitate" msprop:Generator_ColumnPropNameInRow="Cantitate" msprop:Generator_ColumnPropNameInTable="CantitateColumn" msprop:Generator_UserColumnName="Cantitate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DProdus" msprop:Generator_ColumnVarNameInTable="columnDProdus" msprop:Generator_ColumnPropNameInRow="DProdus" msprop:Generator_ColumnPropNameInTable="DProdusColumn" msprop:Generator_UserColumnName="DProdus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DOperatie" msprop:Generator_ColumnVarNameInTable="columnDOperatie" msprop:Generator_ColumnPropNameInRow="DOperatie" msprop:Generator_ColumnPropNameInTable="DOperatieColumn" msprop:Generator_UserColumnName="DOperatie" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StocProduse" msprop:Generator_TableClassName="StocProduseDataTable" msprop:Generator_TableVarName="tableStocProduse" msprop:Generator_TablePropName="StocProduse" msprop:Generator_RowDeletingName="StocProduseRowDeleting" msprop:Generator_RowChangingName="StocProduseRowChanging" msprop:Generator_RowEvHandlerName="StocProduseRowChangeEventHandler" msprop:Generator_RowDeletedName="StocProduseRowDeleted" msprop:Generator_UserTableName="StocProduse" msprop:Generator_RowChangedName="StocProduseRowChanged" msprop:Generator_RowEvArgName="StocProduseRowChangeEvent" msprop:Generator_RowClassName="StocProduseRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IdProdus" msprop:Generator_ColumnVarNameInTable="columnIdProdus" msprop:Generator_ColumnPropNameInRow="IdProdus" msprop:Generator_ColumnPropNameInTable="IdProdusColumn" msprop:Generator_UserColumnName="IdProdus" type="xs:int" minOccurs="0" />
+              <xs:element name="DProdus" msprop:Generator_ColumnVarNameInTable="columnDProdus" msprop:Generator_ColumnPropNameInRow="DProdus" msprop:Generator_ColumnPropNameInTable="DProdusColumn" msprop:Generator_UserColumnName="DProdus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UM" msprop:Generator_ColumnVarNameInTable="columnUM" msprop:Generator_ColumnPropNameInRow="UM" msprop:Generator_ColumnPropNameInTable="UMColumn" msprop:Generator_UserColumnName="UM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cantitate" msprop:Generator_ColumnVarNameInTable="columnCantitate" msprop:Generator_ColumnPropNameInRow="Cantitate" msprop:Generator_ColumnPropNameInTable="CantitateColumn" msprop:Generator_UserColumnName="Cantitate" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
